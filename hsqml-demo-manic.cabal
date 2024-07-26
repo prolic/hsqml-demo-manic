@@ -26,8 +26,8 @@ executable hsqml-manic
         TypeFamilies
     Build-depends:
         base        == 4.*,
-        containers  >= 0.4   && < 0.6,
-        text        >= 0.11  && < 1.3,
+        containers  >= 0.4   && < 0.7,
+        text        >= 2.0  && < 2.1,
         MonadRandom >= 0.4   && < 0.5,
         hsqml       >= 0.3.4 && < 0.4
     GHC-options: -threaded

@@ -266,7 +266,7 @@ plumbAllStarts grid = foldStarts (\col curr ps ->
 
 foldStarts :: (Colour -> Point -> a -> a) -> a -> Grid -> a
 foldStarts f s (Grid _ _ gridMap) =
-    Map.foldWithKey (\curr tile a -> case tile of
+    Map.foldrWithKey (\curr tile a -> case tile of
         Start col _ -> f col curr a
         _           -> a) s gridMap
 
@@ -289,7 +289,7 @@ stripPlumbed ps (Grid w h grid) =
 
 spareParts :: Grid -> [Plumb]
 spareParts (Grid _ _ grid) =
-    Map.foldWithKey sparePart [] grid
+    Map.foldrWithKey sparePart [] grid
 
 sparePart :: Point -> Tile -> [Plumb] -> [Plumb]
 sparePart p (Start col theta) xs = Plumb col (-1) p Nothing (Just theta) : xs

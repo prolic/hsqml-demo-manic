@@ -128,14 +128,14 @@ Item {
 
         Connections {
             target: mouseView.mouse;
-            onPressed: {
+            function onPressed() {
                 if (mouseView.tilePlacable) {
                     c.gridModel = c.gridModel.place(
                         mouseView.tileX, mouseView.tileY, tileSource.top.tile);
                     c.tileSource = c.tileSource.next;
                 }
                 c.pressedComplete();
-            } 
+            }
         }
 
         visible: mouseView.mouse.containsMouse;
@@ -194,11 +194,15 @@ Item {
         }
         Connections {
             target: c;
-            onPressedComplete: virtualMouse.pick();
+            function onPressedComplete() {
+                virtualMouse.pick();
+            }
         }
         Connections {
             target: c.gridModel;
-            onPicked: virtualMouse.move(pos); 
+            function onPicked(pos) {
+                virtualMouse.move(pos);
+            }
         }
         property int mouseX : (tileX+0.5)*c.tileSize;
         property int mouseY : (tileY+0.5)*c.tileSize;
